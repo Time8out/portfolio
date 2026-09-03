@@ -1,174 +1,5 @@
 import { useState } from "react";
-
-// ── Assets ───────────────────────────────────────────────────────────────────
-import t01 from "../src/assets/Time8out/Screenshot 2026-08-17 132006.png";
-import t02 from "../src/assets/Time8out/Screenshot 2026-08-17 132015.png";
-import t03 from "../src/assets/Time8out/Screenshot 2026-08-17 132024.png";
-import t04 from "../src/assets/Time8out/Screenshot 2026-08-17 132038.png";
-import t05 from "../src/assets/Time8out/Screenshot 2026-08-17 132046.png";
-import t06 from "../src/assets/Time8out/Screenshot 2026-08-17 132055.png";
-import t07 from "../src/assets/Time8out/Screenshot 2026-08-17 132109.png";
-import t08 from "../src/assets/Time8out/Screenshot 2026-08-17 132117.png";
-import t09 from "../src/assets/Time8out/Screenshot 2026-08-17 132124.png";
-import t10 from "../src/assets/Time8out/Screenshot 2026-08-17 132133.png";
-import t11 from "../src/assets/Time8out/Screenshot 2026-08-17 132140.png";
-import t12 from "../src/assets/Time8out/Screenshot 2026-08-17 132148.png";
-import t13 from "../src/assets/Time8out/Screenshot 2026-08-17 132158.png";
-import t14 from "../src/assets/Time8out/Screenshot 2026-08-17 132208.png";
-import t15 from "../src/assets/Time8out/Screenshot 2026-08-17 132216.png";
-import t16 from "../src/assets/Time8out/Screenshot 2026-08-17 132230.png";
-import t17 from "../src/assets/Time8out/Screenshot 2026-08-17 132238.png";
-
-import proj1 from "../src/assets/Dev/Screenshot 2026-02-28 022631.png";
-import proj2 from "../src/assets/Dev/Screenshot 2026-02-28 023155.png";
-import proj3 from "../src/assets/Dev/Screenshot 2026-02-28 023643.png";
-
-// Tetelestai Bible (Mobile App)
-import ma1  from "../src/assets/mobileapp/657520324_122128339581079271_413717394934998652_n.jpg";
-import ma2  from "../src/assets/mobileapp/657523475_122128339845079271_5936915331887691005_n.jpg";
-import ma3  from "../src/assets/mobileapp/657525265_122128339719079271_5688376841275939431_n.jpg";
-import ma4  from "../src/assets/mobileapp/657675461_122128340217079271_103663688234942863_n.jpg";
-import ma5  from "../src/assets/mobileapp/658154758_122128340319079271_8594505295325550939_n.jpg";
-import ma6  from "../src/assets/mobileapp/658221870_122128339755079271_3023340636135234144_n.jpg";
-import ma7  from "../src/assets/mobileapp/659130268_122128339677079271_3786608590482122565_n.jpg";
-import ma8  from "../src/assets/mobileapp/659172919_122128339545079271_8074764372666652035_n.jpg";
-import ma9  from "../src/assets/mobileapp/659566311_122128339803079271_3539499664342588014_n.jpg";
-import ma10 from "../src/assets/mobileapp/659642222_122128340115079271_7906012138457610164_n.jpg";
-import ma11 from "../src/assets/mobileapp/659700554_122128339635079271_4434395129980663555_n.jpg";
-import ma12 from "../src/assets/mobileapp/659876406_122128339965079271_2556805708608569485_n.jpg";
-import ma13 from "../src/assets/mobileapp/660295965_122128339503079271_8104245686776742900_n.jpg";
-import ma14 from "../src/assets/mobileapp/660403233_122128340061079271_7486745113921762045_n.jpg";
-import ma15 from "../src/assets/mobileapp/660537003_122128340265079271_6786351733289619190_n.jpg";
-import ma16 from "../src/assets/mobileapp/660616485_122128340163079271_6893266438101061807_n.jpg";
-import ma17 from "../src/assets/mobileapp/660995204_122128339911079271_5549167849317527942_n.jpg";
-import ma18 from "../src/assets/mobileapp/661803070_122128340013079271_7204857263889233147_n.jpg";
-
-// ReDoIt (Web App)
-import redoit1 from "../src/assets/redoit/Screenshot 2026-08-22 003203.png";
-
-// Track8out (Mobile App)
-import tr01 from "../src/assets/track8out/track8out-01.jpg";
-import tr02 from "../src/assets/track8out/track8out-02.jpg";
-import tr03 from "../src/assets/track8out/track8out-03.jpg";
-import tr04 from "../src/assets/track8out/track8out-04.jpg";
-import tr05 from "../src/assets/track8out/track8out-05.jpg";
-import tr06 from "../src/assets/track8out/track8out-06.jpg";
-import tr07 from "../src/assets/track8out/track8out-07.jpg";
-import tr08 from "../src/assets/track8out/track8out-08.jpg";
-import tr09 from "../src/assets/track8out/track8out-09.jpg";
-import tr10 from "../src/assets/track8out/track8out-10.jpg";
-import tr11 from "../src/assets/track8out/track8out-11.jpg";
-import tr12 from "../src/assets/track8out/track8out-12.jpg";
-import tr13 from "../src/assets/track8out/track8out-13.jpg";
-import tr14 from "../src/assets/track8out/track8out-14.jpg";
-import tr15 from "../src/assets/track8out/track8out-15.jpg";
-import tr16 from "../src/assets/track8out/track8out-16.jpg";
-import tr17 from "../src/assets/track8out/track8out-17.jpg";
-import tr18 from "../src/assets/track8out/track8out-18.jpg";
-import tr19 from "../src/assets/track8out/track8out-19.jpg";
-import tr20 from "../src/assets/track8out/track8out-20.jpg";
-import tr21 from "../src/assets/track8out/track8out-21.jpg";
-import tr22 from "../src/assets/track8out/track8out-22.jpg";
-import tr23 from "../src/assets/track8out/track8out-23.jpg";
-import tr24 from "../src/assets/track8out/track8out-24.jpg";
-
-// ── Data ─────────────────────────────────────────────────────────────────────
-interface Project {
-  id: number;
-  images: string[];
-  title: string;
-  subtitle: string;
-  description: string;
-  tags: string[];
-  type: string;
-  year: string;
-  carousel?: boolean;
-  link?: { label: string; url: string };
-}
-
-const projects: Project[] = [
-  {
-    id: 6,
-    images: [tr05, tr01, tr02, tr03, tr04, tr06, tr07, tr08, tr09, tr10, tr11, tr12, tr13, tr14, tr15, tr16, tr17, tr18, tr19, tr20, tr21, tr22, tr23, tr24],
-    title: "Track8out",
-    subtitle: "Budget, Expense & Savings Tracker",
-    description:
-      "A mobile budget tracking app that helps users monitor monthly income, expenditures, and savings in one place. Log transactions by category, review recent activity, and keep a running pulse on personal finances — track today, plan tomorrow.",
-    tags: ["Mobile App", "iOS / Android", "Budget & Finance", "Expense Tracking"],
-    type: "Mobile Application",
-    year: "2026",
-    carousel: true,
-    link: { label: "Download APK", url: "https://drive.google.com/file/d/1xACkvQmTqA1zIyj2rB5l6BZckzVorJcb/view?usp=drive_link" },
-  },
-  {
-    id: 4,
-    images: [ma1, ma2, ma3, ma4, ma5, ma6, ma7, ma8, ma9, ma10, ma11, ma12, ma13, ma14, ma15, ma16, ma17, ma18],
-    title: "Tetelestai Bible",
-    subtitle: "Scripture Reading & Study Companion",
-    description:
-      "A mobile Bible app for reading, bookmarking, and journaling scripture. Lets users save verses, tag personal notes as General, Prayer, Study, or Reflection, and revisit their spiritual journey through a clean, distraction-free reading experience.",
-    tags: ["Mobile App", "iOS / Android", "Faith & Reading", "Notes & Bookmarks"],
-    type: "Mobile Application",
-    year: "2026",
-    carousel: true,
-    link: { label: "Download APK", url: "https://drive.google.com/file/d/1jQZBy2oId9BuqMHeB9NTXVmEgBCt2WLx/view?usp=drivesdk" },
-  },
-  {
-    id: 0,
-    images: [t01, t02, t03, t04, t05, t06, t07, t08, t09, t10, t11, t12, t13, t14, t15, t16, t17],
-    title: "Time8out",
-    subtitle: "Employee Time & Payroll Management Platform",
-    description:
-      "Time8out is an employee time management platform built for small businesses. Handles shift logging, break tracking, automatic deduction computation, and real-time payslip generation — giving employers a live dashboard of who's clocked in, on break, and accruing pay.",
-    tags: ["Web App", "SaaS", "Time Tracking", "Payroll"],
-    type: "Time & Payroll Platform",
-    year: "2026",
-  },
-  {
-    id: 1,
-    images: [proj1],
-    title: "Steinposner Century 21",
-    subtitle: "All-in-One Agent Marketing Hub",
-    description:
-      "A centralized marketing platform built exclusively for Century 21 Steinposner agents. Consolidates vendor hiring, flyer creation, postcard delivery, email marketing, and social media boosting — all under one roof. Eliminates the need for agents to juggle multiple platforms to fulfill their listing and marketing needs.",
-    tags: ["Web App", "E-Commerce", "Real Estate", "Multi-Platform"],
-    type: "Marketing Platform",
-    year: "2025",
-  },
-  {
-    id: 2,
-    images: [proj2],
-    title: "Women's Health & Cosmetics",
-    subtitle: "Health & Beauty Storefront",
-    description:
-      "An e-commerce store dedicated to women's health and well-being. Features a curated catalog of cosmetic and healthcare products with a clean, confidence-inspiring shopping experience designed to resonate with its target audience.",
-    tags: ["E-Commerce", "Health & Beauty", "Storefront", "UI Design"],
-    type: "E-Commerce Store",
-    year: "2025",
-  },
-  {
-    id: 3,
-    images: [proj3],
-    title: "Salon Beauty Supply",
-    subtitle: "Professional Beauty E-Commerce",
-    description:
-      "A professional e-commerce store for salon-grade beauty supplies. Built for both retail customers and salon professionals, offering a streamlined product browsing and purchasing experience for hair, skin, and beauty essentials.",
-    tags: ["E-Commerce", "Beauty Supply", "Retail", "Storefront"],
-    type: "E-Commerce Store",
-    year: "2024",
-  },
-  {
-    id: 5,
-    images: [redoit1],
-    title: "ReDoIt",
-    subtitle: "Visual Markup & Revision Tool",
-    description:
-      "A browser-based markup tool for project managers and teams. Load any website, drop doodles, arrows, boxes, pins, and written instructions directly onto the page, then save the annotated view as a screenshot to send to the team for faster, clearer revisions.",
-    tags: ["Web App", "Collaboration", "Feedback Tool", "Productivity"],
-    type: "Markup & Review Tool",
-    year: "2026",
-  },
-];
+import { devProjects as projects } from "../src/data/devProjects";
 
 // ── Filmstrip preview (5 images visible at once, windowed by offset) ────────
 const FILM_SIZE = 5;
@@ -513,20 +344,11 @@ export default function Dev() {
         .dev-row-screenshot {
           width: 100%;
           display: block;
-          height: 340px;
+          height: 420px;
           object-fit: cover;
           object-position: top;
-          transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94),
-                      filter 0.4s ease,
-                      height 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-          filter: brightness(0.8) saturate(0.75);
-          cursor: zoom-in;
-        }
-
-        .dev-row:hover .dev-row-screenshot {
-          height: 420px;
           filter: brightness(1) saturate(1.05);
-          transform: scale(1.01);
+          cursor: zoom-in;
         }
 
         /* zoom overlay on screenshot */
@@ -873,8 +695,7 @@ export default function Dev() {
           .dev-row { grid-template-columns: 1fr; }
           .dev-row-num-col { display: none; }
           .dev-row-main { padding: 1.5rem 0; }
-          .dev-row-screenshot { height: 220px; }
-          .dev-row:hover .dev-row-screenshot { height: 280px; }
+          .dev-row-screenshot { height: 280px; }
 
           /* Carousel rows (Tetelestai Bible, Track8out) — one image at a time on
              mobile; tap the arrow to step to the next screenshot. Height is driven

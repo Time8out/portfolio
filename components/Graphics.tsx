@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { devProjects } from "../src/data/devProjects";
 
 // ── Import your assets ──────────────────────────────────────────────────────
 // Web Design
@@ -36,59 +37,117 @@ import sd7 from "../src/assets/shirtdesign/933cd4_dc21b0c2a23f48288a3c11f39cae1e
 import sd8 from "../src/assets/shirtdesign/933cd4_eaffa2e625054aeb813084cfeccf5b86~mv2.avif";
 import sd9 from "../src/assets/shirtdesign/933cd4_f8cb313e7c3d4ce0a4090950e859c161~mv2.avif";
 
-// ── Types & Data ─────────────────────────────────────────────────────────────
-type Category = "all" | "webdesign" | "marketing" | "shirtdesign";
-interface Item { id: number; src: string; category: Exclude<Category,"all">; label: string; tag: string; }
 
-const items: Item[] = [
-  { id:1,  src:wd1,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:2,  src:wd2,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:3,  src:wd3,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:4,  src:wd4,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:5,  src:wd5,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:6,  src:wd6,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:7,  src:wd7,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
-  { id:8,  src:mf1,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:9,  src:mf2,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:10, src:mf3,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:11, src:mf4,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:12, src:mf5,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:13, src:mf6,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:14, src:mf7,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:15, src:mf8,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:16, src:mf9,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:17, src:mf10, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:18, src:mf11, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:19, src:mf12, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:20, src:mf13, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
-  { id:21, src:sd1,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:22, src:sd2,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:23, src:sd3,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:24, src:sd4,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:25, src:sd5,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:26, src:sd6,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:27, src:sd7,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:28, src:sd8,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
-  { id:29, src:sd9,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+// ── Types & Data ─────────────────────────────────────────────────────────────
+type Category = "all" | "projects" | "webdesign" | "marketing" | "shirtdesign";
+interface Item {
+  id: number;
+  src: string;
+  category: Exclude<Category, "all">;
+  label: string;
+  tag: string;
+  /** Full image set to browse when this item is opened — scopes lightbox
+   *  next/prev to this project only, instead of drifting into unrelated
+   *  items from the rest of the active category. */
+  gallery?: string[];
+}
+
+// One card per Dev project, pulling its full screenshot set from the same
+// data source that powers the Dev section, so the two stay in sync.
+const projectItems: Item[] = devProjects.map((p, i) => ({
+  id: i + 1,
+  src: p.images[0],
+  gallery: p.images,
+  category: "projects",
+  label: p.title,
+  tag: p.type,
+}));
+
+const designItems: Item[] = [
+  { id:0, src:wd1,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:wd2,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:wd3,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:wd4,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:wd5,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:wd6,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:wd7,  category:"webdesign",   label:"Website Design", tag:"UI / Web" },
+  { id:0, src:mf1,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf2,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf3,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf4,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf5,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf6,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf7,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf8,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf9,  category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf10, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf11, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf12, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:mf13, category:"marketing",   label:"Marketing File", tag:"Print / Digital" },
+  { id:0, src:sd1,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd2,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd3,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd4,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd5,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd6,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd7,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd8,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
+  { id:0, src:sd9,  category:"shirtdesign", label:"Shirt Design",   tag:"Apparel" },
 ];
+
+const items: Item[] = [...projectItems, ...designItems].map((item, i) => ({ ...item, id: i + 1 }));
 
 const filters: { value: Category; label: string; count: number }[] = [
   { value:"all",         label:"All Work",   count:items.length },
+  { value:"projects",    label:"Projects",   count:items.filter(i=>i.category==="projects").length },
   { value:"webdesign",   label:"Web Design", count:items.filter(i=>i.category==="webdesign").length },
   { value:"marketing",   label:"Marketing",  count:items.filter(i=>i.category==="marketing").length },
   { value:"shirtdesign", label:"Apparel",    count:items.filter(i=>i.category==="shirtdesign").length },
 ];
 
+interface LightboxState { images: string[]; idx: number; title: string; }
+
+// ── Video Creations (Google Drive) ──────────────────────────────────────────
+// Drive "share" links can't be embedded directly — the file ID has to be
+// pulled out and rebuilt as a /preview URL, which is what Drive allows
+// inside an <iframe>.
+function driveEmbedUrl(shareUrl: string): string {
+  const match = shareUrl.match(/\/d\/([^/]+)/);
+  const fileId = match ? match[1] : "";
+  return `https://drive.google.com/file/d/${fileId}/preview`;
+}
+
+interface VideoItem {
+  id: number;
+  embed: string;
+}
+
+const longFormUrls = [
+  "https://drive.google.com/file/d/1M-89wlBCi-OL9qXZBBlFqyQ_AXRkCtg7/view?usp=sharing",
+  "https://drive.google.com/file/d/1ikg5AzfSzJhJaAUtMVgBXFTLjKkrQsaV/view?usp=sharing",
+];
+
+const shortFormUrls = [
+  "https://drive.google.com/file/d/1uaKcOgRY2XXKwPlTjRqtAAAts9F6AqmK/view?usp=sharing",
+  "https://drive.google.com/file/d/1hc36cdMC6HG4lrLeAaUP-KJXqDor8rca/view?usp=sharing",
+  "https://drive.google.com/file/d/1xyz473-S3dK4EPj_-0bzqcmgxxAA5SG-/view?usp=sharing",
+  "https://drive.google.com/file/d/1Yby5yzQ00Gt2okleXT11ameX-Zc4efP2/view?usp=sharing",
+  "https://drive.google.com/file/d/1CY9Y8bVU5luniPb6spEMysm48qPcxNdi/view?usp=sharing",
+];
+
+const longFormVideos: VideoItem[] = longFormUrls.map((url, i) => ({ id: i + 1, embed: driveEmbedUrl(url) }));
+const shortFormVideos: VideoItem[] = shortFormUrls.map((url, i) => ({ id: i + 1, embed: driveEmbedUrl(url) }));
+
 export default function Graphics() {
-  const [active, setActive]     = useState<Category>("webdesign");
-  const [lightbox, setLightbox] = useState<{ src: string; idx: number } | null>(null);
+  const [active, setActive]     = useState<Category>("projects");
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
 
   const visible = active === "all" ? items : items.filter(i => i.category === active);
 
   const navigateLightbox = (dir: 1 | -1) => {
     if (!lightbox) return;
-    const next = (lightbox.idx + dir + visible.length) % visible.length;
-    setLightbox({ src: visible[next].src, idx: next });
+    const next = (lightbox.idx + dir + lightbox.images.length) % lightbox.images.length;
+    setLightbox({ ...lightbox, idx: next });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -155,6 +214,8 @@ export default function Graphics() {
           line-height: 0.92;
           color: #fff;
           margin: 0;
+          overflow-wrap: break-word;
+          word-break: break-word;
         }
         .gfx-heading span { color: #ffc850; }
         .gfx-count {
@@ -402,15 +463,88 @@ export default function Graphics() {
         .gfx-lb-nav:hover { background: rgba(255,200,80,0.1); }
         .gfx-lb-prev { left: 0.75rem; }
         .gfx-lb-next { right: 0.75rem; }
-        .gfx-lb-counter {
+        .gfx-lb-label {
           position: fixed; bottom: 1.25rem; left: 50%;
           transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.3rem;
+        }
+        .gfx-lb-title {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 1rem;
+          letter-spacing: 0.08em;
+          color: #fff;
+        }
+        .gfx-lb-counter {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.6rem; letter-spacing: 0.2em;
           text-transform: uppercase;
           color: rgba(255,255,255,0.3);
         }
         .gfx-lb-counter span { color: #ffc850; }
+
+        /* ── Video Creations section ── */
+        .gfx-video-section {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+        .gfx-video-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.9rem;
+        }
+        .gfx-video-subheading {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.62rem;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.4);
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+        .gfx-video-subheading::before {
+          content: '';
+          width: 18px; height: 1px;
+          background: #ffc850;
+          flex-shrink: 0;
+          display: inline-block;
+        }
+        .gfx-video-grid {
+          display: grid;
+          gap: 1rem;
+          width: 100%;
+          min-width: 0;
+        }
+        .gfx-video-grid-long {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .gfx-video-grid-short {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .gfx-video-card {
+          position: relative;
+          min-width: 0;
+          overflow: hidden;
+          border-radius: 4px;
+          border: 1px solid rgba(255,255,255,0.08);
+          background: rgba(8,8,12,0.95);
+        }
+        .gfx-video-card iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+          display: block;
+          background: #000;
+        }
+        .gfx-video-card-long { aspect-ratio: 16 / 9; }
+        .gfx-video-card-short { aspect-ratio: 9 / 19.5; }
 
         /* ─────────── TABLET (≤ 860px) ─────────── */
         @media (max-width: 860px) {
@@ -430,6 +564,8 @@ export default function Graphics() {
           }
           .gfx-count { margin-top: 0; }
           .gfx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .gfx-video-grid-long { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .gfx-video-grid-short { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
 
         /* ─────────── MOBILE (≤ 600px) ─────────── */
@@ -462,6 +598,10 @@ export default function Graphics() {
           /* Grid: always 2 cols on mobile */
           .gfx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+          /* Video grids: stack long form, keep short form scannable */
+          .gfx-video-grid-long { grid-template-columns: minmax(0, 1fr); }
+          .gfx-video-grid-short { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
           /* Lightbox */
           .gfx-lb { padding: 0.75rem 0.4rem; }
           .gfx-lb-img img { max-width: 96vw; max-height: 72vh; }
@@ -475,6 +615,7 @@ export default function Graphics() {
         @media (max-width: 390px) {
           .gfx-heading { font-size: clamp(2rem, 12vw, 2.6rem); }
           .gfx-grid { grid-template-columns: minmax(0, 1fr); }
+          .gfx-video-grid-short { grid-template-columns: minmax(0, 1fr); }
         }
       `}</style>
 
@@ -484,10 +625,13 @@ export default function Graphics() {
           <button className="gfx-lb-close" onClick={() => setLightbox(null)}>✕</button>
           <button className="gfx-lb-nav gfx-lb-prev" onClick={e => { e.stopPropagation(); navigateLightbox(-1); }}>‹</button>
           <div className="gfx-lb-img" onClick={e => e.stopPropagation()}>
-            <img src={lightbox.src} alt="Preview" />
+            <img src={lightbox.images[lightbox.idx]} alt={lightbox.title} />
           </div>
           <button className="gfx-lb-nav gfx-lb-next" onClick={e => { e.stopPropagation(); navigateLightbox(1); }}>›</button>
-          <div className="gfx-lb-counter"><span>{lightbox.idx + 1}</span> / {visible.length}</div>
+          <div className="gfx-lb-label">
+            <span className="gfx-lb-title">{lightbox.title}</span>
+            <span className="gfx-lb-counter"><span>{lightbox.idx + 1}</span> / {lightbox.images.length}</span>
+          </div>
         </div>
       )}
 
@@ -508,15 +652,16 @@ export default function Graphics() {
           <div className="gfx-right">
 
             <div className="gfx-pills">
+              <span className="gfx-pill">Projects</span>
               <span className="gfx-pill">Web Design</span>
               <span className="gfx-pill">Marketing</span>
               <span className="gfx-pill">Apparel</span>
             </div>
 
             <p className="gfx-bio">
-              A selection of <em>visual work</em> spanning <strong>website UI design</strong>,
-              print &amp; digital <strong>marketing materials</strong>, and custom{" "}
-              <strong>shirt / apparel graphics</strong>.
+              A selection of <em>visual work</em> spanning shipped <strong>app &amp; web projects</strong>,
+              <strong> website UI design</strong>, print &amp; digital <strong>marketing materials</strong>,
+              and custom <strong>shirt / apparel graphics</strong>.
               Every piece is crafted with intention — designed to communicate clearly and leave a lasting impression.
             </p>
 
@@ -539,7 +684,15 @@ export default function Graphics() {
             {/* Grid */}
             <div className="gfx-grid">
               {visible.map((item, idx) => (
-                <div key={item.id} className="gfx-card" onClick={() => setLightbox({ src: item.src, idx })}>
+                <div
+                  key={item.id}
+                  className="gfx-card"
+                  onClick={() => setLightbox(
+                    item.gallery
+                      ? { images: item.gallery, idx: 0, title: item.label }
+                      : { images: visible.map(v => v.src), idx, title: item.label }
+                  )}
+                >
                   <img src={item.src} alt={item.label} loading="lazy" />
                   <div className="gfx-card-overlay">
                     <span className="gfx-card-tag">{item.tag}</span>
@@ -548,6 +701,70 @@ export default function Graphics() {
                   <span className="gfx-card-num">{String(idx+1).padStart(2,"0")}</span>
                 </div>
               ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Video Creations ── */}
+      <section className="gfx-wrap" id="videos">
+        <div className="gfx-inner">
+
+          {/* Left */}
+          <div className="gfx-left">
+            <span className="gfx-eyebrow">My Work</span>
+            <h2 className="gfx-heading">Video<br /><span>Creations</span></h2>
+            <div className="gfx-count">
+              <span className="gfx-count-num">{longFormVideos.length + shortFormVideos.length}</span>
+              <span className="gfx-count-lbl">Total Videos</span>
+            </div>
+          </div>
+
+          {/* Right */}
+          <div className="gfx-right">
+
+            <p className="gfx-bio">
+              A mix of <em>long form</em> and <em>short form</em> video work — hosted on Google Drive and embedded
+              directly below, from full-length pieces to quick, punchy cuts made for social.
+            </p>
+
+            <div className="gfx-divider" />
+
+            <div className="gfx-video-section">
+              <div className="gfx-video-group">
+                <h3 className="gfx-video-subheading">Long Form</h3>
+                <div className="gfx-video-grid gfx-video-grid-long">
+                  {longFormVideos.map((v, idx) => (
+                    <div className="gfx-video-card gfx-video-card-long" key={v.id}>
+                      <iframe
+                        src={v.embed}
+                        title={`Long Form Video ${idx + 1}`}
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="gfx-video-group">
+                <h3 className="gfx-video-subheading">Short Form</h3>
+                <div className="gfx-video-grid gfx-video-grid-short">
+                  {shortFormVideos.map((v, idx) => (
+                    <div className="gfx-video-card gfx-video-card-short" key={v.id}>
+                      <iframe
+                        src={v.embed}
+                        title={`Short Form Video ${idx + 1}`}
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
           </div>

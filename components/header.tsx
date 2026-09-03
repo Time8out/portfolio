@@ -4,8 +4,8 @@ import image from '../src/assets/heroimage/Gemini_Generated_Image_n8fs5qn8fs5qn8
 const navItems = [
   { label: "Home",       target: "home" },
   { label: "About",      target: "about" },
-  { label: "Graphics",   target: "graphics" },
   { label: "Dev",        target: "dev" },
+  { label: "Graphics",   target: "graphics" },
   { label: "Experience", target: "experience" },
   { label: "Tools",      target: "tools" },
   { label: "Contact",    target: "contact" },
