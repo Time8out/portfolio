@@ -106,6 +106,27 @@ import tr22 from "../assets/track8out/track8out-22.jpg";
 import tr23 from "../assets/track8out/track8out-23.jpg";
 import tr24 from "../assets/track8out/track8out-24.jpg";
 
+// Class8out (Web App)
+import c8o01 from "../assets/class8out/Screenshot 2026-09-03 080415.png";
+import c8o02 from "../assets/class8out/Screenshot 2026-09-03 080425.png";
+import c8o03 from "../assets/class8out/Screenshot 2026-09-03 080433.png";
+import c8o04 from "../assets/class8out/Screenshot 2026-09-03 080444.png";
+import c8o05 from "../assets/class8out/Screenshot 2026-09-03 080455.png";
+import c8o06 from "../assets/class8out/Screenshot 2026-09-03 080507.png";
+import c8o07 from "../assets/class8out/Screenshot 2026-09-03 080519.png";
+import c8o08 from "../assets/class8out/Screenshot 2026-09-03 080532.png";
+import c8o09 from "../assets/class8out/Screenshot 2026-09-03 080541.png";
+import c8o10 from "../assets/class8out/Screenshot 2026-09-03 080550.png";
+import c8o11 from "../assets/class8out/Screenshot 2026-09-03 080558.png";
+import c8o12 from "../assets/class8out/Screenshot 2026-09-03 080608.png";
+import c8o13 from "../assets/class8out/Screenshot 2026-09-03 081945.png";
+import c8o14 from "../assets/class8out/Screenshot 2026-09-03 081954.png";
+import c8o15 from "../assets/class8out/Screenshot 2026-09-03 082003.png";
+import c8o16 from "../assets/class8out/Screenshot 2026-09-03 082011.png";
+import c8o17 from "../assets/class8out/Screenshot 2026-09-03 082021.png";
+import c8o18 from "../assets/class8out/Screenshot 2026-09-03 082031.png";
+import c8o19 from "../assets/class8out/Screenshot 2026-09-03 082038.png";
+
 // ── Data ─────────────────────────────────────────────────────────────────────
 export interface DevProject {
   id: number;
@@ -121,6 +142,18 @@ export interface DevProject {
 }
 
 export const devProjects: DevProject[] = [
+  {
+    id: 9,
+    images: [c8o01, c8o02, c8o03, c8o04, c8o05, c8o06, c8o07, c8o08, c8o09, c8o10, c8o11, c8o12, c8o13, c8o14, c8o15, c8o16, c8o17, c8o18, c8o19],
+    title: "Class8out",
+    subtitle: "ESL Booking Platform",
+    description:
+      "An ESL booking system connecting teachers and students. Browse available tutors, book class slots, and manage lessons in one streamlined platform — teach, book, connect.",
+    tags: ["Web App", "Booking System", "Education", "ESL"],
+    type: "ESL Booking Platform",
+    year: "2026",
+    link: { label: "Visit Site", url: "https://wingmarlonampoon-commits.github.io/class8out/" },
+  },
   {
     id: 6,
     images: [tr05, tr01, tr02, tr03, tr04, tr06, tr07, tr08, tr09, tr10, tr11, tr12, tr13, tr14, tr15, tr16, tr17, tr18, tr19, tr20, tr21, tr22, tr23, tr24],
